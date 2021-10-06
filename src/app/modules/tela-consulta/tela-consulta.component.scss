@@ -1,0 +1,87 @@
+.card {
+  height: auto;
+  padding: 0;
+  border: 1px solid #c0c0c0;
+ }
+
+.card-header {
+  padding: .45rem 1.25rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  background-color: rgba(0,75,203);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.requerente{
+  padding: 10px;
+}
+
+.input_style{
+  padding: 0.4rem;
+  border: 1px solid #c0c0c0;
+  width: 200px;
+  font-size: 12px;
+}
+
+button{
+  padding: 0.4rem;
+}
+
+
+.example-small-box, .example-large-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.example-small-box {
+  height: 100px;
+  width: 100px;
+}
+
+.example-large-box {
+  height: 300px;
+  width: 99%;
+}
+
+
+.style {
+  background-color: #EDF3FF;
+  border: 1px solid #c0c0c0;
+}
+
+.mat-card {
+  border: 1px solid #c0c0c0;
+  /*box-shadow: 0 25px 50px rgba(8, 21, 66, 0.06) !important;*/
+}
+
+
+.mat-card-subtitle, .mat-card-content {
+  font-size: 0.95em;
+}
+.mat-card[_ngcontent-drn-c27] {
+  border: 1px solid #c0c0c0;
+  box-shadow: 0 25px 50px rgba(8, 21, 66, 0.06) !important;
+  height: 20em;
+}
+
+.mat-tab-labels {
+  display: flex;
+  background-color: #E5E5E5;
+  border: 1px solid #c0c0c0;
+}
+
+.dados_estilo {
+  font-weight:500 ;
+  margin: 15px 40px 5px 40px;
+  color: #848688;
+}
+
+.destaque {
+  color: #ED3237;
+}
