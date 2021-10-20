@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { cabecalho } from '@models/cabecalho.model';
+
 import { ConsultaService } from 'src/app/services/consulta.service';
 
 @Component({
@@ -7,10 +9,16 @@ import { ConsultaService } from 'src/app/services/consulta.service';
   styleUrls: ['./tela-consulta.component.scss'],
 })
 export class TelaConsultaComponent implements OnInit {
+  //
+  public cpf: cabecalho;
 
-  constructor(protected consultaService: ConsultaService) { }
+  constructor(protected consultaService: ConsultaService) {}
 
-  ngOnInit() {
+  ngOnInit() {}
 
+  public findByCpf() {
+    this.consultaService.findByCpf(this.cpf.protocolo);
   }
+
+  public findByNomeMaeData() {}
 }

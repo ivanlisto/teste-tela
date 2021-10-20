@@ -14,48 +14,47 @@
           </div>
         </div>
        </div>
-  </!--div>
-
+  </!--div-->
 
   <!-- Colunas de forma responsível (automaticamente) -->
   <div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <div class="card">
-        <p class="card-header">Consulta Requerente</p>
-        <div class="card-body">
-          <div class="card-text">
-            <div class="requerente">
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div class="dados_estilo"><b>Digite o CPF:&nbsp;</b><input class="input_style" type="text" name="" id="">&nbsp;<button class="button_style" type="submit">OK</button></div>
-               </div>
-              </div>
+      <mat-card class="card">
+        <mat-card-subtitle class="card-header">Consulta Requerente</mat-card-subtitle>
+        <mat-card-content>
+          <div class="requerente">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="dados_estilo"><b>Digite o CPF:&nbsp;</b><input class="input_style" type="text" name="" id="" [(ngModel)]="cpf">&nbsp;<button type="submit" (click)="findByCpf()">OK</button></div>
+             </div>
             </div>
           </div>
-        </div>
-      </div>
-     </div>
 
-     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-      <div class="card">
-        <p class="card-header">Resultado da Consulta</p>
-        <div class="card-body">
-          <div class="card-text">
-            <div class="requerente">
-              <div class="row">
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                   <div class="dados_estilo"><b>CPF:&nbsp;</b><label>123.456.789-00</label></div>
-                </div>
-                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                    <div class="dados_estilo"><b>Nome:&nbsp;</b><label>José Maria da Silva</label></div>
-                </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+      <mat-card class="card">
+        <mat-card-subtitle class="card-header">Consulta Requerente</mat-card-subtitle>
+        <mat-card-content>
+          <div class="requerente">
+            <div class="row">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                 <div class="dados_estilo"><b>CPF:&nbsp;</b><label>123.456.789-00</label></div>
+              </div>
+              <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                  <div class="dados_estilo"><b>Nome:&nbsp;</b><label>José Maria da Silva</label></div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-     </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
+</div>
+
 
     <!--div class="formulario-consulta">
         FORMULARIO DE CONSULTA AQUI
@@ -65,7 +64,7 @@
         RESULTADO DA CONSULTA AQUI
     </div-->
 
-</div>
+
 <div class="container-fluid">
   <mat-card>
     <mat-card-content>
@@ -76,7 +75,7 @@
               <mat-card-content>
                 <mat-tab-group animationDuration="0ms" class="demo-tab-group">
                   <mat-tab label="LAUDO 004 - 22/08/2020">
-                    <div class="demo-tab-content">
+                    <div class="tab-content">
                       <!-- Colunas de forma responsível (automaticamente) -->
                         <div class="row">
                           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -172,7 +171,7 @@
                                     <br>
                                     <div class="row">
                                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="dados_estilo"><b>História:&nbsp;&nbsp;</b><span>
+                                        <div class="dados_estilo"><b>História:&nbsp;&nbsp;</b><span >
                                           Fui internado em 06/02/2020 no Hospital de Cirurgia com problemas de pressão alta e coração. O fôlego é cansado e a cabeça dói. Estou em tratamento e em uso de Metildopa e Hidroclorotiazida.
                                         </span></div>
                                       </div>
