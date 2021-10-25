@@ -1,1 +1,1 @@
-export interface dossiePrevidenciario {}
+export class DossiePrevidenciario {}

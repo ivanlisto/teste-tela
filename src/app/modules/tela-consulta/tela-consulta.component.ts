@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { cabecalho } from '@models/cabecalho.model';
-
+import { Cabecalho } from '@models/cabecalho.model';
+import { DossiePrevidenciario } from '@models/dossieprevidenciario.model';
 import { ConsultaService } from 'src/app/services/consulta.service';
 
 @Component({
@@ -10,14 +10,25 @@ import { ConsultaService } from 'src/app/services/consulta.service';
 })
 export class TelaConsultaComponent implements OnInit {
   //
-  public cpf: cabecalho;
+  public cpf: Cabecalho;
+  public dossiePrevidenciario: DossiePrevidenciario;
 
-  constructor(protected consultaService: ConsultaService) {}
+  constructor(protected consultaService: ConsultaService) {
+    this.cpf = new Cabecalho();
+  }
 
   ngOnInit() {}
 
   public findByCpf() {
-    this.consultaService.findByCpf(this.cpf.protocolo);
+    if (!this.cpf.parametro.trim()) {
+      alert('Informe um cpf');
+    } else {
+      this.consultaService
+        .findByCpf(this.cpf)
+        .subscribe((param) => (this.cpf.parametro = param));
+      console.log(this.cpf.parametro);
+      this.cpf.parametro = '';
+    }
   }
 
   public findByNomeMaeData() {}
