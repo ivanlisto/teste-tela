@@ -4,9 +4,7 @@ import { Cabecalho } from '@models/cabecalho.model';
 import { shareReplay } from 'rxjs/internal/operators/shareReplay';
 import { EnvService } from './env.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ConsultaService {
   //
   public cabecalhoUrl: string = 'http://localhost:3000/cabecalho';
@@ -16,18 +14,13 @@ export class ConsultaService {
   // public dossiePrevidenciarioAPI: string =
   //   'http://localhost:8880/api/v1/dossie-previdenciario/obterDossiePrevidenciario?protocolo=';
   public dossiePrevidenciarioAPI: string =
-    'https://gateway.stg.cloud.pje.jus.br/previdenciario-api/api/v1/dossiePrevidenciario/1.0.0/obterDossie/';
+    'https://gateway.stg.cloud.pje.jus.br/previdenciario-api/api/v1/dossiePrevidenciario/1.0.0/obterDossie/f01c41de-da59-427b-8142-f41be';
 
   constructor(private http: HttpClient, private env: EnvService) {}
 
-  findByCpf(cpf: Cabecalho) {
-    // return [];
-    //TODO: implementar
-    // return this.http
-    //   .get<any[]>(`${this.env.apiUrl}/consulta`)
-    //   .pipe(shareReplay());
+  findByCpf(filtro: string) {
     return this.http
-      .get<any>(`${this.dossiePrevidenciarioAPI}${cpf.parametro}`)
+      .get<Cabecalho>(`${this.cabecalhoUrl}?parametro=${filtro}`)
       .pipe(shareReplay());
   }
 

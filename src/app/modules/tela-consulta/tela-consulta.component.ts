@@ -11,24 +11,29 @@ import { ConsultaService } from 'src/app/services/consulta.service';
 export class TelaConsultaComponent implements OnInit {
   //
   public cpf: Cabecalho;
-  public cpf2: Cabecalho;
+  public filtro: string;
   public dossiePrevidenciario: DossiePrevidenciario;
 
-  constructor(protected consultaService: ConsultaService) {
-    this.cpf = new Cabecalho();
-  }
+  constructor(protected consultaService: ConsultaService) {}
 
   ngOnInit() {}
 
   public findByCpf() {
-    if (!this.cpf.parametro.trim()) {
+    // this.cpf = new Cabecalho();
+
+    if (!this.filtro.trim()) {
       alert('Informe um cpf');
     } else {
-      this.consultaService
-        .findByCpf(this.cpf)
-        .subscribe((param) => (this.cpf2.parametro = param));
+      this.consultaService.findByCpf(this.filtro).subscribe(
+        (resultado) => (this.cpf = resultado),
+        () => console.log('Ocorreu um erro')
+      );
       console.log(this.cpf.parametro);
-      // this.cpf.parametro = '';
+      console.log(
+        this.cpf.dossiePrevidenciario.consultaFiliadoTO.filiadoTO.nome
+      );
+
+      this.filtro = '';
     }
   }
 
