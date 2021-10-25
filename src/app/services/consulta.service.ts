@@ -13,8 +13,10 @@ export class ConsultaService {
   public processamentoTOUrl: string = 'http://localhost:3000/processamentoTO';
   public dossiePrevidenciario: string =
     'http://localhost:3000/dossiePrevidenciario';
+  // public dossiePrevidenciarioAPI: string =
+  //   'http://localhost:8880/api/v1/dossie-previdenciario/obterDossiePrevidenciario?protocolo=';
   public dossiePrevidenciarioAPI: string =
-    'http://localhost:8880/api/v1/dossie-previdenciario/obterDossiePrevidenciario?protocolo=';
+    'https://gateway.stg.cloud.pje.jus.br/previdenciario-api/api/v1/dossiePrevidenciario/1.0.0/obterDossie/';
 
   constructor(private http: HttpClient, private env: EnvService) {}
 
@@ -25,7 +27,7 @@ export class ConsultaService {
     //   .get<any[]>(`${this.env.apiUrl}/consulta`)
     //   .pipe(shareReplay());
     return this.http
-      .get<any>(`${this.cabecalhoUrl}?parametro=${cpf.parametro}`)
+      .get<any>(`${this.dossiePrevidenciarioAPI}${cpf.parametro}`)
       .pipe(shareReplay());
   }
 

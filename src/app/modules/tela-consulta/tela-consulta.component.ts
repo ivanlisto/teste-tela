@@ -11,6 +11,7 @@ import { ConsultaService } from 'src/app/services/consulta.service';
 export class TelaConsultaComponent implements OnInit {
   //
   public cpf: Cabecalho;
+  public cpf2: Cabecalho;
   public dossiePrevidenciario: DossiePrevidenciario;
 
   constructor(protected consultaService: ConsultaService) {
@@ -25,9 +26,9 @@ export class TelaConsultaComponent implements OnInit {
     } else {
       this.consultaService
         .findByCpf(this.cpf)
-        .subscribe((param) => (this.cpf.parametro = param));
+        .subscribe((param) => (this.cpf2.parametro = param));
       console.log(this.cpf.parametro);
-      this.cpf.parametro = '';
+      // this.cpf.parametro = '';
     }
   }
 
