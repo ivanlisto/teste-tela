@@ -25,7 +25,7 @@
           <div class="requerente">
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="dados_estilo"><b>Digite o CPF:&nbsp;</b><input class="input_style" type="text" name="filtro" [(ngModel)]="filtro">&nbsp;<button type="submit" (click)="findByCpf()">OK</button></div>
+                <div class="dados_estilo"><b>Digite o CPF:</b><input class="input_style" type="text" name="filtro" [(ngModel)]="filtro">&nbsp;<button type="submit" (click)="findByCpf()">OK</button></div>
              </div>
             </div>
           </div>
@@ -42,7 +42,7 @@
           <div class="requerente">
             <div class="row">
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                 <div class="dados_estilo"><b>CPF:&nbsp;</b><label>{{cpf.parametro}}</label></div>
+                 <div class="dados_estilo"><b>CPF:&nbsp;</b><label>{{ cpf.parametro }}</label></div>
               </div>
               <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                   <!-- <div class="dados_estilo"><b>Nome:&nbsp;</b><label>{{ cpf.dossiePrevidenciario.consultaFiliadoTO.filiadoTO.nome }} </label></div> -->
@@ -68,13 +68,13 @@
 <div class="container-fluid" *ngIf="cpf">
   <mat-card>
     <mat-card-content>
-      <mat-tab-group animationDuration="0ms" class="demo-tab-group">
-        <mat-tab class="teste" label="REQUERIMENTO 300 - AUXÍLIO ACIDENTE - 23/08/2020" *ngFor="let req of reqs">
+      <mat-tab-group animationDuration="0ms" class="demo-tab-group" ngFor="let req of reqs">
+        <mat-tab class="teste" label="Requerimento - tipo -  data" >
           <div class="demo-tab-content">
             <mat-card class="style">
               <mat-card-content>
-                <mat-tab-group animationDuration="0ms" class="demo-tab-group" *ngFor="let laudo of laudos">
-                  <mat-tab label="LAUDO 004 - 22/08/2020">
+                <mat-tab-group animationDuration="0ms" class="demo-tab-group" ngFor="let laudo of laudos">
+                  <mat-tab label="LAUDO 004 - data">
                     <div class="tab-content">
                       <!-- Colunas de forma responsível (automaticamente) -->
                         <div class="row">
