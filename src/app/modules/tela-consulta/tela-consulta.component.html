@@ -35,14 +35,14 @@
       </mat-card>
     </div>
 
-    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" *ngIf="cpf">
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" *ngIf="dossie">
       <mat-card class="card" >
         <mat-card-subtitle class="card-header">Consulta Requerente</mat-card-subtitle>
         <mat-card-content>
           <div class="requerente">
             <div class="row">
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                 <div class="dados_estilo"><b>CPF:&nbsp;</b><label>{{ cpf.parametro }}</label></div>
+                 <div class="dados_estilo"><b>CPF:&nbsp;</b><label>{{ 1 + 1 }}</label></div>
               </div>
               <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                   <!-- <div class="dados_estilo"><b>Nome:&nbsp;</b><label>{{ cpf.dossiePrevidenciario.consultaFiliadoTO.filiadoTO.nome }} </label></div> -->
@@ -65,7 +65,7 @@
     </div-->
 
 
-<div class="container-fluid" *ngIf="cpf">
+<div class="container-fluid" *ngIf="dossie">
   <mat-card>
     <mat-card-content>
       <mat-tab-group animationDuration="0ms" class="demo-tab-group" ngFor="let req of reqs">

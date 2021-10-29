@@ -9,6 +9,6 @@ import { TelaConsultaComponent } from './tela-consulta.component';
   declarations: [TelaConsultaComponent],
   imports: [SharedModule, TelaConsultaRoutingModule],
   exports: [TelaConsultaComponent],
-  providers: [ConsultaService],
+  providers: [],
 })
 export class TelaConsultaModule {}

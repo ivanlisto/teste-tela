@@ -4,42 +4,70 @@ import {
     HttpParams
 } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Cabecalho } from '@models/cabecalho.model'
 import { shareReplay } from 'rxjs/internal/operators/shareReplay'
 import { EnvService } from './env.service'
 import { Observable, throwError } from 'rxjs'
-import { map, catchError } from 'rxjs/operators'
+import { catchError, map, tap } from 'rxjs/operators'
+import { statusDossie } from '@models/statusDossie.model'
+import { obterDossie } from '@models/obterDossie.model'
+import { solicitarDossie } from '@models/solicitarDossie.model'
 
-@Injectable()
+
+@Injectable({
+    providedIn: 'root'
+})
 export class ConsultaService {
     //
+    public headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-PDPJ-CPF-USUARIO-OPERADOR': '93758798412'
+    })
+    public solicitardossie: solicitarDossie
+    public statusdossie: statusDossie
+    public obterdossie: obterDossie
     public protocolo: string = 'e6725b2a-aae2-409c-a5d8-91708'
 
-    public link1: string =
-        'https://gateway.stg.cloud.pje.jus.br/previdenciario-api/api/v1/dossiemedico/2.0.0/solicitarDossie/cpf'
 
-    public link2: string = `https://gateway.stg.cloud.pje.jus.br/previdenciario-api/api/v1/dossiemedico/2.0.0/statusDossie/${this.protocolo}`
+    constructor(private http: HttpClient, private env: EnvService) {
+      this.statusdossie = new statusDossie()
+      this.solicitardossie = new solicitarDossie()
+      this.obterdossie = new obterDossie()
+    }
 
-    public link3: string = `https://gateway.stg.cloud.pje.jus.br/previdenciario-api/api/v1/dossiemedico/2.0.0/obterDossie/${this.protocolo}/false`
+  findByCpf(filtro: string): Observable<obterDossie> {
+     //  this.solicitardossie.cpf = filtro
+    // let body = JSON.stringify({ this.solicitardossie })
 
-    constructor(private http: HttpClient, private env: EnvService) {}
-
-    findByCpf(filtro: string): Observable<Cabecalho> {
-        let headers = new HttpHeaders({
-            'Content-Type': 'Application/json',
-            'X-PDPJ-CPF-USUARIO-OPERADOR': '93758798412'
+        let body = JSON.stringify({
+            cpf: '11077466714',
+            nomeCliente: 'string',
+            urlRetorno: 'string'
         })
 
-        let params = new HttpParams()
-        params = params.append('cpf', '11077466714')
-        params = params.append('nomeCliente', 'string')
-        params = params.append('urlRetorno', 'string')
+        // let teste: Observable<statusDossie> = this.http
+        //     .post(this.solicitarLink, body, {
+        //         headers: this.headers
+        //     })
+        //     .pipe(catchError(this.handlerror), shareReplay(3))
 
-        return this.http.post(this.link1, { headers, params }).pipe(
-            catchError(this.handlerror),
-            shareReplay(3)
-            //map((res: any) => res.json() as Cabecalho)
-        )
+
+
+        // teste.subscribe(res=> this.protocolo = res.protocolo)
+
+        // this.env.statusLink = this.env.statusLink + this.protocolo
+
+        // this.http
+        //     .get(this.statusLink, {
+        //         headers: this.headers
+        //     })
+        //     .pipe(catchError(this.handlerror), shareReplay(3))
+
+        this.env.obterLink = this.env.obterLink + this.protocolo + '/false'
+        console.log('link da consulta  '+this.env.obterLink);
+
+        return this.http
+            .get(this.env.obterLink, {headers: this.headers})
+            .pipe(catchError(this.handlerror), shareReplay())
     }
 
     findByNomeMaeData(
@@ -57,3 +85,4 @@ export class ConsultaService {
         return throwError(handlerror)
     }
 }
+

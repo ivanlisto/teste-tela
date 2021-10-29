@@ -16,7 +16,10 @@ export class EnvService {
   public realm: string;
   public clientId: string;
   public redirectUri: string;
-  
+  public solicitarLink: string;
+  public statusLink: string;
+  public obterLink: string;
+
 
   constructor() {
     const keyEnv = '__env';
