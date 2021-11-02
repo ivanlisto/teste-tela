@@ -14,7 +14,9 @@ export class TelaConsultaComponent implements OnInit {
     public dossie: obterDossie
     public filtro: string = '83428542720'
 
-    constructor(protected consultaService: ConsultaService) {}
+    constructor(protected consultaService: ConsultaService) {
+        // this.dossie = new obterDossie()
+    }
 
     ngOnInit() {}
 
@@ -22,17 +24,10 @@ export class TelaConsultaComponent implements OnInit {
         if (!this.filtro.trim()) {
             alert('Informe um cpf')
         } else {
-            this.consultaService.findByCpf(this.filtro).subscribe(
-                dossie => {
-                    this.dossie = new obterDossie()
-                    this.dossie = dossie
-                },
-                () => console.log('Ocorreu um erro')
-            )
-
-            // console.log(this.dossie.dossieMedico.laudos.listaLaudoSABITO);
-
-            this.filtro = null
+            this.consultaService
+                .findByCpf(this.filtro)
+                .subscribe(dossie => (this.dossie = dossie))
+            console.log(this.dossie)
         }
     }
 
