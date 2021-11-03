@@ -21,7 +21,7 @@ export class ConsultaService {
     constructor(private http: HttpClient, private env: EnvService) {
         //
         this.statusdossie = new StatusDossie()
-        this.solicitardossie = new SolicitarDossie('', 'string', 'string')
+        this.solicitardossie = new SolicitarDossie()
         this.obterdossie = new ObterDossie()
 
         this.headers = new HttpHeaders()

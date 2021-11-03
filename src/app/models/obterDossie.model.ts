@@ -4,9 +4,9 @@ import { ProcessamentoTO } from './processamentoTO.model'
 
 export class ObterDossie {
     constructor(
-        public cabecalho: Cabecalho,
-        public dossieMedio: DossieMedico,
-        public dossieMedicoPDF: string,
-        public processamentoTO: ProcessamentoTO
+        public cabecalho?: Cabecalho,
+        public dossieMedio?: DossieMedico,
+        public dossieMedicoPDF?: string,
+        public processamentoTO?: ProcessamentoTO
     ) {}
 }

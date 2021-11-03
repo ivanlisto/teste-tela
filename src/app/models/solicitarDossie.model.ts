@@ -1,7 +1,7 @@
 export class SolicitarDossie {
     constructor(
         public cpf?: string,
-        public nomeCliente?: string,
-        public urlRetorno?: string
+        public nomeCliente: string = 'string',
+        public urlRetorno: string = 'string'
     ) {}
 }
