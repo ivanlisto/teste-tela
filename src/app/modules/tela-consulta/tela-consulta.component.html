@@ -35,7 +35,7 @@
       </mat-card>
     </div>
 
-    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" *ngIf="dossie">
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" *ngIf="dossie.cabecalho!=null">
       <mat-card class="card" >
         <mat-card-subtitle class="card-header">Consulta Requerente</mat-card-subtitle>
         <mat-card-content>
@@ -65,15 +65,18 @@
     </div-->
 
 
-<div class="container-fluid" *ngIf="dossie">
+<div class="container-fluid" *ngIf="dossie.cabecalho!=null">
   <mat-card>
     <mat-card-content>
-      <mat-tab-group animationDuration="0ms" class="demo-tab-group" *ngFor="let requerimento of requerimentos">
+      <mat-tab-group animationDuration="0ms" class="demo-tab-group">
         <mat-tab class="teste" label="Requerimento - tipo -  data" >
           <div class="demo-tab-content">
             <mat-card class="style">
               <mat-card-content>
-                <mat-tab-group animationDuration="0ms" class="demo-tab-group" *ngFor="let laudo of laudos">
+                <mat-tab-group animationDuration="0ms" class="demo-tab-group" >
+
+                  <span *ngFor="let laudo of laudos">
+
                   <mat-tab label="LAUDO 004 - data">
                     <div class="tab-content">
                       <!-- Colunas de forma responsível (automaticamente) -->
@@ -199,7 +202,10 @@
                         </div>
                     </div>
                   </mat-tab>
-                </mat-tab-group>
+
+                </span>
+
+              </mat-tab-group>
               </mat-card-content>
             </mat-card>
           </div>

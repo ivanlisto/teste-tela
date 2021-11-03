@@ -27,9 +27,10 @@ export class ConsultaService {
         this.headers = new HttpHeaders()
         this.headers = this.headers.append('Content-Type', 'application/json')
         this.headers = this.headers.append('X-PDPJ-CPF-USUARIO-OPERADOR', '93758798412')
+        this.headers = this.headers.append('Cache-Control', 'no-cache')
     }
 
-    findByCpf(filtro: string): Observable<ObterDossie> {
+    public findByCpf(filtro: string): Observable<ObterDossie> {
         /*
         1 - Cpf para consulta, incluido no campo cpf do objeto
         2 - Montagem do corpo da resquisição
@@ -38,6 +39,7 @@ export class ConsultaService {
             retornando para a tela-consulta o objeto obterDossie
 
         5 - Função de tratamento de erro da requisição
+        6 - Função para extrair o corpo da resposta
         */
 
         /*1*/ this.solicitardossie.cpf = filtro
@@ -48,11 +50,7 @@ export class ConsultaService {
             .post(this.env.solicitarLink, body, {
                 headers: this.headers
             })
-            .pipe(
-                catchError(this.handlerror),
-                shareReplay(),
-                map(response => response.json() as StatusDossie)
-            )
+            .pipe(catchError(this.handlerror), shareReplay(), map(this.extractData))
             .subscribe(next => (this.statusdossie = next))
 
         // console.log(body)
@@ -65,11 +63,7 @@ export class ConsultaService {
             .get(`${this.env.obterLink}${this.statusdossie.protocolo}/false`, {
                 headers: this.headers
             })
-            .pipe(
-                catchError(this.handlerror),
-                shareReplay(),
-                map(response => response.json() as ObterDossie)
-            )
+            .pipe(catchError(this.handlerror), shareReplay(), map(this.extractData))
     }
 
     findByNomeMaeData(nome: string, nomeMae: string, dataNascimento: string) {
@@ -78,8 +72,13 @@ export class ConsultaService {
         return this.http
     }
 
-    /*5*/ handlerror(handlerror: any): Observable<any> {
+    /*5*/ public handlerror(handlerror: any): Observable<any> {
         console.log('Erro na requisição=>', handlerror)
         return throwError(handlerror)
+    }
+
+    /*6*/ public extractData(res: any) {
+        let body = res
+        return body
     }
 }

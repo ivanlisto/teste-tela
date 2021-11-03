@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Cabecalho } from '@models/cabecalho.model'
 import { DossieMedico } from '@models/dossieMedico.model'
+import { ListaLaudoSABITO } from '@models/listaLaudoSABITO.model'
 import { ObterDossie } from '@models/obterDossie.model'
 import { ProcessamentoTO } from '@models/processamentoTO.model'
 import { isEmpty } from 'rxjs/operators'
@@ -16,9 +17,10 @@ export class TelaConsultaComponent implements OnInit {
 
     public dossie: ObterDossie
     public filtro: string = '83428542720'
+    public laudos: ListaLaudoSABITO
 
     constructor(protected consultaService: ConsultaService) {
-        // this.dossie = new ObterDossie()
+        this.dossie = new ObterDossie()
     }
 
     ngOnInit() {}
@@ -28,6 +30,7 @@ export class TelaConsultaComponent implements OnInit {
             alert('Informe um cpf')
         } else {
             this.consultaService.findByCpf(this.filtro).subscribe(dossie => (this.dossie = dossie))
+            this.laudos.listaLaudo = this.dossie.dossieMedio.laudos.listaLaudo
             console.log(this.dossie)
         }
     }
