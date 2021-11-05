@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { Cabecalho } from '@models/cabecalho.model'
-import { DossieMedico } from '@models/dossieMedico.model'
 import { ListaLaudo } from '@models/listaLaudo.model'
-import { ListaLaudoSABITO } from '@models/listaLaudoSABITO.model'
 import { ObterDossie } from '@models/obterDossie.model'
-import { ProcessamentoTO } from '@models/processamentoTO.model'
-import { async } from 'rxjs/internal/scheduler/async'
-import { isEmpty } from 'rxjs/operators'
 import { ConsultaService } from 'src/app/services/consulta.service'
 
 @Component({
