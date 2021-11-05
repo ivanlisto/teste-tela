@@ -4,6 +4,7 @@ import { DossieMedico } from '@models/dossieMedico.model'
 import { ListaLaudoSABITO } from '@models/listaLaudoSABITO.model'
 import { ObterDossie } from '@models/obterDossie.model'
 import { ProcessamentoTO } from '@models/processamentoTO.model'
+import { async } from 'rxjs/internal/scheduler/async'
 import { isEmpty } from 'rxjs/operators'
 import { ConsultaService } from 'src/app/services/consulta.service'
 
@@ -16,7 +17,7 @@ export class TelaConsultaComponent implements OnInit {
     //
 
     public dossie: ObterDossie
-    public filtro: string = '83428542720'
+    public filtro: string = '11077466714'
     public laudos: ListaLaudoSABITO
 
     constructor(protected consultaService: ConsultaService) {
@@ -30,8 +31,6 @@ export class TelaConsultaComponent implements OnInit {
             alert('Informe um cpf')
         } else {
             this.consultaService.findByCpf(this.filtro).subscribe(dossie => (this.dossie = dossie))
-            this.laudos.listaLaudo = this.dossie.dossieMedio.laudos.listaLaudo
-            console.log(this.dossie)
         }
     }
 

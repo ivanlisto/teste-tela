@@ -20,23 +20,23 @@ export class ListaLaudo {
         public dtInicioDoencaDID?: Date,
         public dtInicioIncapacidadeDII?: Date,
         public dtRealizExame?: Date,
-        public medicoSABITO = class {
-            nmMedico: string | undefined
-            nuCRM: string | undefined
-            nuMatInss: number | undefined
-        },
-        public origemCadastro?: number,
-        public requerimentoSABITO = class {
-            public beneficioSABITO = class {
+        public requerimentoSABITO?: {
+            beneficioSABITO?: {
                 dsBeneficio: string | undefined
             }
-            public requerenteSABITO = class {
+            requerenteSABITO?: {
                 dtNascimento: Date | undefined
                 nmRequerente: string | undefined
                 nuIdentidade: string | undefined
                 ocupacao: string | undefined
                 sexo: string | undefined
             }
-        }
+        },
+        public medicoSABITO?: {
+            nmMedico: string | undefined
+            nuCRM: string | undefined
+            nuMatInss: number | undefined
+        },
+        public origemCadastro?: number
     ) {}
 }

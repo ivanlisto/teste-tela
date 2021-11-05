@@ -22,7 +22,7 @@ export class ConsultaService {
         //
         this.statusdossie = new StatusDossie()
         this.solicitardossie = new SolicitarDossie()
-        this.obterdossie = new ObterDossie()
+        // this.obterdossie = new ObterDossie()
 
         this.headers = new HttpHeaders()
         this.headers = this.headers.append('Content-Type', 'application/json')
@@ -47,23 +47,19 @@ export class ConsultaService {
         /*2*/ let body = JSON.stringify(this.solicitardossie)
 
         /*3*/ this.http
-            .post(this.env.solicitarLink, body, {
-                headers: this.headers
-            })
-            .pipe(catchError(this.handlerror), shareReplay(), map(this.extractData))
-            .subscribe(next => (this.statusdossie = next))
+            .get<StatusDossie>(`${this.env.solicitarLink}?parametro=${filtro}`)
+            // .pipe(catchError(this.handlerror), shareReplay())
+            .subscribe(statusdossie => (this.statusdossie = statusdossie))
+
+        filtro = this.statusdossie.protocolo
 
         // console.log(body)
-        // console.log(this.statusdossie)
+        console.log(filtro)
 
         // console.log(this.env.solicitarLink)
         // console.log(`${this.env.obterLink}${this.statusdossie.protocolo}/false`)
 
-        /*4*/ return this.http
-            .get(`${this.env.obterLink}${this.statusdossie.protocolo}/false`, {
-                headers: this.headers
-            })
-            .pipe(catchError(this.handlerror), shareReplay(), map(this.extractData))
+        /*4*/ return this.http.get(`${this.env.obterLink}?protocolo=${filtro}`)
     }
 
     findByNomeMaeData(nome: string, nomeMae: string, dataNascimento: string) {

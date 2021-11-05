@@ -42,10 +42,10 @@
           <div class="requerente">
             <div class="row">
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                 <div class="dados_estilo"><b>CPF:&nbsp;</b><label>{{ 1 + 1 }}</label></div>
+                 <div class="dados_estilo"><b>CPF:&nbsp;</b><label>{{ dossie.cabecalho.parametro }}</label></div>
               </div>
               <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                  <!-- <div class="dados_estilo"><b>Nome:&nbsp;</b><label>{{ dossie.dossieMedico.laudos.listaLaudosSABITO[0]}} </label></div> -->
+                  <div class="dados_estilo"><b>Nome:&nbsp;</b><label>{{ dossie.dossieMedico.laudos.listaLaudoSABITO[0].requerimentoSABITO.requerenteSABITO.nmRequerente }} </label></div>
               </div>
             </div>
           </div>
@@ -69,15 +69,16 @@
   <mat-card>
     <mat-card-content>
       <mat-tab-group animationDuration="0ms" class="demo-tab-group">
+        <span>
         <mat-tab class="teste" label="Requerimento - tipo -  data" >
           <div class="demo-tab-content">
             <mat-card class="style">
               <mat-card-content>
                 <mat-tab-group animationDuration="0ms" class="demo-tab-group" >
 
-                  <span *ngFor="let laudo of laudos">
+                  <span *ngFor="let dossiemedico of dossie.dossieMedico.laudos.listaLaudoSABITO">
 
-                  <mat-tab label="LAUDO 004 - data">
+                  <mat-tab label="{{ dossiemedico.cdLaudo }}">
                     <div class="tab-content">
                       <!-- Colunas de forma responsível (automaticamente) -->
                         <div class="row">
@@ -210,7 +211,7 @@
             </mat-card>
           </div>
         </mat-tab>
-
+</span>
       </mat-tab-group>
     </mat-card-content>
   </mat-card>

@@ -26,18 +26,18 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common'
 import { AppConfigService } from './app-config.service'
 import { AppConfig } from './app-config.model'
 
-export function inicializarAuth(kcService: KeycloakService) {
-    return () => kcService.init()
-}
+// export function inicializarAuth(kcService: KeycloakService) {
+//     return () => kcService.init()
+// }
 
-const configServiceFactory = (): Oidc.UserManagerSettings => {
-    const authenticationSettings = AppConfigService.settings.authentication
-    return authenticationSettings
-}
+// const configServiceFactory = (): Oidc.UserManagerSettings => {
+//     const authenticationSettings = AppConfigService.settings.authentication
+//     return authenticationSettings
+// }
 
-export function initializeApp(appConfigService: AppConfigService) {
-    return (): Promise<AppConfig> => appConfigService.load()
-}
+// export function initializeApp(appConfigService: AppConfigService) {
+//     return (): Promise<AppConfig> => appConfigService.load()
+// }
 
 @NgModule({
     declarations: [AppComponent],
@@ -58,28 +58,28 @@ export function initializeApp(appConfigService: AppConfigService) {
     ],
     providers: [
         // Uikit
-        AppConfigService,
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initializeApp,
-            deps: [AppConfigService],
-            multi: true
-        },
-        { provide: OIDC_CONFIG, useFactory: configServiceFactory },
+        // AppConfigService,
+        // {
+        //     provide: APP_INITIALIZER,
+        //     useFactory: initializeApp,
+        //     deps: [AppConfigService],
+        //     multi: true
+        // },
+        // { provide: OIDC_CONFIG, useFactory: configServiceFactory },
         // End uikit
 
-        {
-            provide: APP_INITIALIZER,
-            useFactory: inicializarAuth,
-            deps: [KeycloakService],
-            multi: true
-        },
+        // {
+        //     provide: APP_INITIALIZER,
+        //     useFactory: inicializarAuth,
+        //     deps: [KeycloakService],
+        //     multi: true
+        // },
 
         { provide: LOCALE_ID, useValue: 'pt-BR' },
 
-        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+        // { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
 
-        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+        // { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
 
         /*
     Define o uso de paths sem o caracter de fragmento/hashtag ("#"). Por padrão, o Angular cria paths no
