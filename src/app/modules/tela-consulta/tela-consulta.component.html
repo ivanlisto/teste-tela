@@ -45,7 +45,7 @@
                  <div class="dados_estilo"><b>CPF:&nbsp;</b><label>{{ dossie.cabecalho.parametro }}</label></div>
               </div>
               <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                  <div class="dados_estilo"><b>Nome:&nbsp;</b><label>{{ dossie.dossieMedico.laudos.listaLaudoSABITO[0].requerimentoSABITO.requerenteSABITO.nmRequerente }} </label></div>
+                  <div class="dados_estilo"><b>Nome:&nbsp;</b><label></label></div>
               </div>
             </div>
           </div>
@@ -69,7 +69,10 @@
   <mat-card>
     <mat-card-content>
       <mat-tab-group animationDuration="0ms" class="demo-tab-group">
+
+        <!-- span para interacao de requerimentos -->
         <span>
+
         <mat-tab class="teste" label="Requerimento - tipo -  data" >
           <div class="demo-tab-content">
             <mat-card class="style">
@@ -78,7 +81,7 @@
 
                   <span *ngFor="let dossiemedico of dossie.dossieMedico.laudos.listaLaudoSABITO">
 
-                  <mat-tab label="{{ dossiemedico.cdLaudo }}">
+                  <mat-tab label="Laudo - {{ dossiemedico.cdLaudo }}">
                     <div class="tab-content">
                       <!-- Colunas de forma responsível (automaticamente) -->
                         <div class="row">
@@ -88,33 +91,33 @@
                                 <div class="card-text">
                                   <div class="row">
                                       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                        <div class="dados_estilo"><b>Requerente:&nbsp;&nbsp;</b><span>José Maria</span></div>
+                                        <div class="dados_estilo"><b>Requerente:&nbsp;&nbsp;</b><span>{{ dossiemedico.requerimentoSABITO.requerenteSABITO.nmRequerente }}</span></div>
                                       </div>
                                       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                      <div class="dados_estilo"><b>Nascimento:&nbsp;&nbsp;</b><span>01/05/1980</span></div>
+                                      <div class="dados_estilo"><b>Nascimento:&nbsp;&nbsp;</b><span>{{ dossiemedico.requerimentoSABITO.requerenteSABITO.dtNascimento | date: "dd/MM/yyyy" }}</span></div>
                                       </div>
                                       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                      <div class="dados_estilo"><b>Identidade:&nbsp;&nbsp;</b><span>123456</span></div>
+                                      <div class="dados_estilo"><b>Identidade:&nbsp;&nbsp;</b><span>{{ dossiemedico.requerimentoSABITO.requerenteSABITO.nuIdentidade }}</span></div>
                                       </div>
                                       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                      <div class="dados_estilo"><b>Sexo:&nbsp;&nbsp;</b><span>Masculino</span></div>
+                                      <div class="dados_estilo"><b>Sexo:&nbsp;&nbsp;</b><span>{{ dossiemedico.requerimentoSABITO.requerenteSABITO.sexo }}</span></div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                    <div class="dados_estilo"><b>RP:&nbsp;&nbsp;</b><span>Sim</span></div>
+                                    <div class="dados_estilo"><b>RP:&nbsp;&nbsp;</b><span> {{ dossiemedico.requerimentoSABITO.requerenteSABITO.ocupacao }}</span></div>
                                     </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                        <div class="dados_estilo"><b>Médico:&nbsp;&nbsp;</b><span>Gestor Médico Norte RJ 3</span></div>
+                                        <div class="dados_estilo"><b>Médico:&nbsp;&nbsp;</b><span>{{ dossiemedico.medicoSABITO.nmMedico }}</span></div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                      <div class="dados_estilo"><b>CRM:&nbsp;&nbsp;</b><span>965</span></div>
+                                      <div class="dados_estilo"><b>CRM:&nbsp;&nbsp;</b><span>{{ dossiemedico.medicoSABITO.nuCRM }}</span></div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                      <div class="dados_estilo"><b>Mat. INSS:&nbsp;&nbsp;</b><span>01/05/1980</span></div>
+                                      <div class="dados_estilo"><b>Mat. INSS:&nbsp;&nbsp;</b><span>{{ dossiemedico.medicoSABITO.nuMatInss }}</span></div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                      <div class="dados_estilo"><b>Origem Cadastro:&nbsp;&nbsp;</b><span>965</span></div>
+                                      <div class="dados_estilo"><b>Origem Cadastro:&nbsp;&nbsp;</b><span>{{ dossiemedico.origemCadastro }}</span></div>
                                   </div>
                                   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                     <div class="dados_estilo"><b></b></div>
@@ -139,60 +142,59 @@
                                   <div class="card-text">
                                     <div class="row">
                                       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <div class="dados_estilo"><b>Resultado Incapacidade:&nbsp;&nbsp;</b><span class="destaque">Existe incapacidade laborativa</span></div>
+                                        <div class="dados_estilo"><b>Resultado Incapacidade:&nbsp;&nbsp;</b><span class="destaque">{{ dossiemedico.dsResultadoIncapacidade}}</span></div>
                                       </div>
                                       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <div class="dados_estilo"><b>Benefício:&nbsp;&nbsp;</b><span class="destaque">Auxílio Acidente</span></div>
+                                        <div class="dados_estilo"><b>Benefício:&nbsp;&nbsp;</b><span class="destaque">{{ dossiemedico.requerimentoSABITO.beneficioSABITO.dsBeneficio }}</span></div>
                                       </div>
                                       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <div class="dados_estilo"><b>Perícias:&nbsp;&nbsp;</b><span class="destaque">02</span></div>
-                                      </div>
-                                    </div>
-
-                                    <div class="row">
-                                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <div class="dados_estilo"><b>Código do Benefício:&nbsp;&nbsp;</b><span>1010</span></div>
-                                      </div>
-                                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <div class="dados_estilo"><b>Data da realização do exame:&nbsp;&nbsp;</b><span>23/09/2020</span></div>
-                                      </div>
-                                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <div class="dados_estilo"><b>Código de Protocolo:&nbsp;&nbsp;</b><span>011</span></div>
+                                        <div class="dados_estilo"><b>Perícias:&nbsp;&nbsp;</b><span class="destaque"> sem campo vinculado</span></div>
                                       </div>
                                     </div>
 
                                     <div class="row">
                                       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <div class="dados_estilo"><b>Data Início Doença DID:&nbsp;&nbsp;</b><span>06/02/2020</span></div>
+                                        <div class="dados_estilo"><b>Código do Benefício:&nbsp;&nbsp;</b><span>{{ dossiemedico.cdBeneficio }}</span></div>
                                       </div>
                                       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <div class="dados_estilo"><b>Data Início Incapacidade DII:&nbsp;&nbsp;</b><span>06/02/202</span></div>
+                                        <div class="dados_estilo"><b>Data da realização do exame:&nbsp;&nbsp;</b><span>{{ dossiemedico.dtCessacaoBeneficio | date: "dd/MM/yyyy"}}</span></div>
                                       </div>
                                       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <div class="dados_estilo"><b>Requerente:&nbsp;&nbsp;</b><span></span></div>
+                                        <div class="dados_estilo"><b>Código de Protocolo:&nbsp;&nbsp;</b><span>{{ dossiemedico.cdProtocolo }}</span></div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <div class="dados_estilo"><b>Data Início Doença DID:&nbsp;&nbsp;</b><span>{{ dossiemedico.dtInicioDoencaDID | date: "dd/MM/yyyy"}}</span></div>
+                                      </div>
+                                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <div class="dados_estilo"><b>Data Início Incapacidade DII:&nbsp;&nbsp;</b><span>{{ dossiemedico.dtInicioIncapacidadeDII | date: "dd/MM/yyyy" }}</span></div>
+                                      </div>
+                                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <div class="dados_estilo"><b>Requerente:&nbsp;&nbsp;</b><span>{{ dossiemedico.requerimentoSABITO.requerenteSABITO.nmRequerente }}</span></div>
                                       </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="dados_estilo"><b>História:&nbsp;&nbsp;</b><span >
-                                          Fui internado em 06/02/2020 no Hospital de Cirurgia com problemas de pressão alta e coração. O fôlego é cansado e a cabeça dói. Estou em tratamento e em uso de Metildopa e Hidroclorotiazida.
+                                        <div class="dados_estilo"><b>História:&nbsp;&nbsp;</b><span >{{ dossiemedico.dsHistoria }}
                                         </span></div>
                                       </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                        <div class="dados_estilo"><b>Descrição Exame Físico:&nbsp;&nbsp;</b><span>Estado geral Regular, pulso 104 bat./min, P.A. 210 x 130 mmHg.</span></div>
+                                        <div class="dados_estilo"><b>Descrição Exame Físico:&nbsp;&nbsp;</b><span>{{ dossiemedico.dsExameFisico }}</span></div>
                                       </div>
                                       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                        <div class="dados_estilo"><b>Acidente de Trabalho:&nbsp;&nbsp;</b><span>Não</span></div>
+                                        <div class="dados_estilo"><b>Acidente de Trabalho:&nbsp;&nbsp;</b><span>{{ dossiemedico.dsAcidenteTrabalho }}</span></div>
                                       </div>
                                       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                        <div class="dados_estilo"><b>Considerações:&nbsp;&nbsp;</b><span>Incapaz para o trabalho</span></div>
+                                        <div class="dados_estilo"><b>Considerações:&nbsp;&nbsp;</b><span>{{ dossiemedico.dsConsideracoes }}</span></div>
                                       </div>
                                       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                        <div class="dados_estilo"><b>Isenção de Carência:&nbsp;&nbsp;</b><span>Sim</span></div>
+                                        <div class="dados_estilo"><b>Isenção de Carência:&nbsp;&nbsp;</b><span>{{ dossiemedico.dsIsencaoCarencia}}</span></div>
                                       </div>
                                     </div>
                                     <br>
@@ -211,7 +213,9 @@
             </mat-card>
           </div>
         </mat-tab>
-</span>
+
+      </span>
+
       </mat-tab-group>
     </mat-card-content>
   </mat-card>

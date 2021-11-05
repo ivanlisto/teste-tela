@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Cabecalho } from '@models/cabecalho.model'
 import { DossieMedico } from '@models/dossieMedico.model'
+import { ListaLaudo } from '@models/listaLaudo.model'
 import { ListaLaudoSABITO } from '@models/listaLaudoSABITO.model'
 import { ObterDossie } from '@models/obterDossie.model'
 import { ProcessamentoTO } from '@models/processamentoTO.model'
@@ -18,7 +19,7 @@ export class TelaConsultaComponent implements OnInit {
 
     public dossie: ObterDossie
     public filtro: string = '11077466714'
-    public laudos: ListaLaudoSABITO
+    public laudos: ListaLaudo[]
 
     constructor(protected consultaService: ConsultaService) {
         this.dossie = new ObterDossie()
@@ -30,7 +31,16 @@ export class TelaConsultaComponent implements OnInit {
         if (!this.filtro.trim()) {
             alert('Informe um cpf')
         } else {
-            this.consultaService.findByCpf(this.filtro).subscribe(dossie => (this.dossie = dossie))
+            this.consultaService.findByCpf(this.filtro).subscribe(
+                dossie => (this.dossie = dossie)
+                // err => console.log(err),
+                // () => {
+                //     this.dossie.dossieMedico.laudos.listaLaudoSABITO.forEach(element => {
+                //         this.laudos.push(element)
+                //         console.log(element)
+                //     })
+                // }
+            )
         }
     }
 

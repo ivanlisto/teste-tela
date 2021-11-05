@@ -75,7 +75,7 @@ import { AppConfig } from './app-config.model'
         //     multi: true
         // },
 
-        { provide: LOCALE_ID, useValue: 'pt-BR' },
+        //  { provide: LOCALE_ID, useValue: 'pt-BR' },
 
         // { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
 

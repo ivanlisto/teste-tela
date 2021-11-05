@@ -16,13 +16,11 @@ export class ConsultaService {
     public headers: HttpHeaders
     public solicitardossie: SolicitarDossie
     public statusdossie: StatusDossie
-    public obterdossie: ObterDossie
 
     constructor(private http: HttpClient, private env: EnvService) {
         //
         this.statusdossie = new StatusDossie()
         this.solicitardossie = new SolicitarDossie()
-        // this.obterdossie = new ObterDossie()
 
         this.headers = new HttpHeaders()
         this.headers = this.headers.append('Content-Type', 'application/json')
@@ -48,18 +46,15 @@ export class ConsultaService {
 
         /*3*/ this.http
             .get<StatusDossie>(`${this.env.solicitarLink}?parametro=${filtro}`)
-            // .pipe(catchError(this.handlerror), shareReplay())
-            .subscribe(statusdossie => (this.statusdossie = statusdossie))
+            .pipe(catchError(this.handlerror), shareReplay())
+            .subscribe(res => (this.statusdossie = res))
 
         filtro = this.statusdossie.protocolo
 
-        // console.log(body)
         console.log(filtro)
-
-        // console.log(this.env.solicitarLink)
-        // console.log(`${this.env.obterLink}${this.statusdossie.protocolo}/false`)
-
-        /*4*/ return this.http.get(`${this.env.obterLink}?protocolo=${filtro}`)
+        /*4*/ return this.http
+            .get(`${this.env.obterLink}?protocolo=${filtro}`)
+            .pipe(catchError(this.handlerror), shareReplay())
     }
 
     findByNomeMaeData(nome: string, nomeMae: string, dataNascimento: string) {
