@@ -26,18 +26,18 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common'
 import { AppConfigService } from './app-config.service'
 import { AppConfig } from './app-config.model'
 
-// export function inicializarAuth(kcService: KeycloakService) {
-//     return () => kcService.init()
-// }
+export function inicializarAuth(kcService: KeycloakService) {
+    return () => kcService.init()
+}
 
-// const configServiceFactory = (): Oidc.UserManagerSettings => {
-//     const authenticationSettings = AppConfigService.settings.authentication
-//     return authenticationSettings
-// }
+const configServiceFactory = (): Oidc.UserManagerSettings => {
+    const authenticationSettings = AppConfigService.settings.authentication
+    return authenticationSettings
+}
 
-// export function initializeApp(appConfigService: AppConfigService) {
-//     return (): Promise<AppConfig> => appConfigService.load()
-// }
+export function initializeApp(appConfigService: AppConfigService) {
+    return (): Promise<AppConfig> => appConfigService.load()
+}
 
 @NgModule({
     declarations: [AppComponent],

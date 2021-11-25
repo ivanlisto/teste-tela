@@ -4,11 +4,12 @@ import { SharedModule } from '@shared/shared.module';
 
 import { TelaConsultaRoutingModule } from './tela-consulta-routing.module';
 import { TelaConsultaComponent } from './tela-consulta.component';
+import { TelaViewlaudoComponent } from './tela-viewlaudo/tela-viewlaudo.component';
 
 @NgModule({
-  declarations: [TelaConsultaComponent],
+  declarations: [TelaConsultaComponent, TelaViewlaudoComponent],
   imports: [SharedModule, TelaConsultaRoutingModule],
-  exports: [TelaConsultaComponent],
+  exports: [TelaConsultaComponent, TelaViewlaudoComponent],
   providers: [],
 })
 export class TelaConsultaModule {}

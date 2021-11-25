@@ -1,11 +1,9 @@
-import { ListaLaudo } from './listaLaudo.model'
+import { Laudo } from './laudo.model'
 
 export class ListaLaudoSABITO {
-    constructor(
-        public listaLaudoSABITO?: ListaLaudo[],
-        public mensagemTO = class {
-            httpCode?: number
-            result?: string
-        }
-    ) {}
+    public listaLaudoSABITO?: Laudo[]
+    public mensagemTO?: {
+        httpCode?: number
+        result?: string
+    }
 }

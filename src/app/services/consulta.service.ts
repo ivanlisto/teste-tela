@@ -4,7 +4,13 @@ import { ObterDossie } from '@models/obterDossie.model'
 import { SolicitarDossie } from '@models/solicitarDossie.model'
 import { StatusDossie } from '@models/statusDossie.model'
 import { Observable, throwError } from 'rxjs'
-import { catchError, map, shareReplay } from 'rxjs/operators'
+import {
+    catchError,
+    map,
+    shareReplay,
+    take,
+    tap
+} from 'rxjs/operators'
 
 import { EnvService } from './env.service'
 
@@ -23,9 +29,18 @@ export class ConsultaService {
         this.solicitardossie = new SolicitarDossie()
 
         this.headers = new HttpHeaders()
-        this.headers = this.headers.append('Content-Type', 'application/json')
-        this.headers = this.headers.append('X-PDPJ-CPF-USUARIO-OPERADOR', '93758798412')
-        this.headers = this.headers.append('Cache-Control', 'no-cache')
+        this.headers = this.headers.append(
+            'Content-Type',
+            'application/json'
+        )
+        this.headers = this.headers.append(
+            'X-PDPJ-CPF-USUARIO-OPERADOR',
+            '93758798412'
+        )
+        this.headers = this.headers.append(
+            'Cache-Control',
+            'no-cache'
+        )
     }
 
     public findByCpf(filtro: string): Observable<ObterDossie> {
@@ -44,20 +59,40 @@ export class ConsultaService {
 
         /*2*/ let body = JSON.stringify(this.solicitardossie)
 
-        /*3*/ this.http
-            .get<StatusDossie>(`${this.env.solicitarLink}?parametro=${filtro}`)
-            .pipe(catchError(this.handlerror), shareReplay())
-            .subscribe(res => (this.statusdossie = res))
+        /*3*/ this.findProtocolo(filtro).subscribe(
+            res => (this.statusdossie = this.extractData(res)),
+            err => this.handlerror(err),
+            () => {
+                filtro = this.statusdossie.protocolo
+            }
+        )
 
-        filtro = this.statusdossie.protocolo
-
-        console.log(filtro)
         /*4*/ return this.http
             .get(`${this.env.obterLink}?protocolo=${filtro}`)
-            .pipe(catchError(this.handlerror), shareReplay())
+            .pipe(
+                catchError(this.handlerror),
+                shareReplay(),
+                // map(data => data as ObterDossie)
+                tap(x => console.log(x))
+            )
     }
 
-    findByNomeMaeData(nome: string, nomeMae: string, dataNascimento: string) {
+    findProtocolo(parametro: string): Observable<StatusDossie> {
+        return this.http
+            .get(`${this.env.solicitarLink}?parametro=${parametro}`)
+            .pipe(
+                catchError(this.handlerror),
+                // map(data => this.extractData(data)),
+                shareReplay(),
+                tap(x => console.log(x))
+            )
+    }
+
+    findByNomeMaeData(
+        nome: string,
+        nomeMae: string,
+        dataNascimento: string
+    ) {
         // return [];
         //TODO: implementar
         return this.http

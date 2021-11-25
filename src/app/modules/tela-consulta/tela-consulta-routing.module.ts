@@ -1,12 +1,19 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TelaConsultaComponent } from './tela-consulta.component';
+import { TelaViewlaudoComponent } from './tela-viewlaudo/tela-viewlaudo.component';
 
 const routes: Routes = [
   {
+    path: 'tela-viewlaudo',
+    component: TelaViewlaudoComponent,
+  },
+
+  {
     path: '',
-    component: TelaConsultaComponent
+    component: TelaConsultaComponent,
   }
+
 ];
 
 @NgModule({
@@ -14,3 +21,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class TelaConsultaRoutingModule { }
+
+export class TelaviewlaudoRoutingModule { }
