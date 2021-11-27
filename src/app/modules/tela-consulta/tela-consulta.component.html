@@ -62,21 +62,11 @@
                 <div align='center' class="row">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col align-self-start">
-                                CPF
-                            </div>
-                            <div class="col align-self-center">
-                                NOME
-                            </div>
-                            <div class="col align-self-center">
-                                PROTOCOLO
-                            </div>
-                            <div class="col align-self-center">
-                                SITUAÇÃO
-                            </div>
-                            <div class="col align-self-end">
-                                AÇÕES
-                            </div>
+                            <div class="col align-self-start">CPF</div>
+                            <div class="col align-self-center">NOME</div>
+                            <div class="col align-self-center">PROTOCOLO</div>
+                            <div class="col align-self-center">SITUAÇÃO</div>
+                            <div class="col align-self-end">AÇÕES</div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col align-self-start">
@@ -94,7 +84,7 @@
                             </div>
                             <div class="col align-self-end">
                                 <tr>Cancelar pedido</tr>
-                                <tr><a href='tela-viewlaudo.component.html'>Ver Dossie</a></tr>
+                                <td><a [href]="ObterDossie">Ver Dossie</a></td>
                             </div>
                         </div>
                         <div class="row justify-content-center">
@@ -122,3 +112,5 @@
         </mat-card-content>
     </mat-card>
 </div>
+
+<app-tela-viewlaudo></app-tela-viewlaudo>

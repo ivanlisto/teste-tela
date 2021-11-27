@@ -6,13 +6,13 @@ import { TelaViewlaudoComponent } from './tela-viewlaudo/tela-viewlaudo.componen
 const routes: Routes = [
   {
     path: 'tela-viewlaudo',
-    component: TelaViewlaudoComponent,
+    component: TelaViewlaudoComponent
   },
 
   {
     path: '',
-    component: TelaConsultaComponent,
-  }
+    component: TelaConsultaComponent
+  },
 
 ];
 
@@ -22,4 +22,4 @@ const routes: Routes = [
 })
 export class TelaConsultaRoutingModule { }
 
-export class TelaviewlaudoRoutingModule { }
+export default class TelaviewlaudoRoutingModule { }
