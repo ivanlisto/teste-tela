@@ -1,0 +1,21 @@
+// Realizar requisição no Angular // Aqui vamos realizar as requisições no próprio AppComponent, que é criado por padrão quando iniciamos um novo projeto Angular import { BrowserModule } from '@angular/platform-browser'; import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component'; import { HttpClientModule } from '@angular/common/http'; // (primeiro passo - importar httpclient) @NgModule({ declarations: [ AppComponent ], imports: [ BrowserModule, HttpClientModule ], providers: [],
+bootstrap: [AppComponent] }) export class AppModule { } // abrir o app.component.ts e declarar no construtor da classe um parâmetro do tipo HttpClient constructor(private http: HttpClient) {} // Configurando a interface do componente // adicionar a mesma
+quantidade de botões no AppComponent, um para cada request
+
+<button (click)="listarTodosDossies()">GET</button>
+<button (click)="listarDossiePorId()">GET /id</button> // vou usar apenas o GET
+
+<button (click)="adicionarProduto()">POST</button>
+<button (click)="alterarProduto()">PUT</button>
+<button (click)="excluirProduto()">DELETE</button> // Cada botão tem seu evento onclick vinculado a um método que criaremos a partir de agora. // Enviando requisições HTTP readonly apiURL : string; // A variável foi declarada como readonly, pois ela não
+deve ser alterada em nenhum outro // ponto do código após ser inicializada, o que será feito no construtor da classe: constructor() { this.apiURL == 'http://localhost:3000'; } // a primeira requisição que enviaremos será do tipo GET para listar todos
+os produtos, // então vamos codificar o método listarTodosDossies listarTodosDossies() { this.http.get(`${ this.apiURL }/produtos`) .subscribe(resultado => console.log(resultado)); } // o método get da classe HttpClient é o responsável por enviar requisições
+do tipo GET para o endereço // informado como parâmetro // Aqui esse endereço é formado pela concatenação da URL base + /produtos // o método get é assíncrono e retorna um Observable. Sendo assim, para // recuperarmos seu resultado precisamos invocar
+o método subscribe, passando para ele uma função anônima cujo argumento é o corpo da resposta obtido, // já devidamente convertido para objeto JavaScript. // De forma semelhante ao que acabamos de fazer, podemos enviar outra requisição GET passando //
+o id do objeto desejado como parâmetro. // Faremos isso no método listarProdutoPorId listarProdutoPorId() { this.http.get(`${ this.apiURL }/produtos/1`) .subscribe(resultado => console.log(resultado)); } // A estrutura aqui é a mesma, apenas com a adição
+do id no final da URL. // Nesse caso, como passamos um id válido, teremos como resultado o objeto correspondente // Se ao invés de um id válido passarmos um número que não existe na lista retornada na primeira requisição, // teremos como resultado um
+status 404 (Not Found) e um erro // Por ser um padrão do browser, não temos como suprimir a primeira mensagem, mas podemos // tratar o erro para apresentar um retorno amigável para o usuário. Para isso, podemos // informar uma segunda função como parâmetro
+para o método subscribe, dessa vez tendo como // argumento o erro que é retornado listarDossiePorId() { this.http.get(`${ this.apiURL }/api/v1/dossiemedico/2.0.0/solicitarDossie/CPF`) .subscribe( resultado => { console.log(resultado) }, erro => { if(erro.status
+== 404) { console.log('Produto não localizado.'); } } ); } // url de pesquisa do dossie edit_location >> /api/v1/dossiemedico/2.0.0/solicitarDossie/CPF // emitir a matriz completa de todos os resultados toda vez que uma resposta voltar, // pode usar scan
+para emitir uma matriz de todas as emissões. searchMultipleNumbers(numbers: number[]) { return from(numbers).pipe( mergeMap(id => this.httpClient.get(`/api/v1/dossiemedico/2.0.0/solicitarDossie/CPF/${id}`)), scan((all, val) => [...all, val], []) ); }

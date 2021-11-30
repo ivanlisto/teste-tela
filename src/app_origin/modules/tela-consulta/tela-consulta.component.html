@@ -56,26 +56,35 @@
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngIf="dossie.cabecalho!=null">
     <mat-card class="card">
-        <mat-card-subtitle class="card-header"><b>Dossie Médico Solicitado</b></mat-card-subtitle>
+        <mat-card-subtitle align='center' class="card-header"><b>Dossie Médico Solicitado</b></mat-card-subtitle>
         <mat-card-content>
             <div class="requerente">
-                <div class="row">
+                <div align='center' class="row">
                     <div class="container">
                         <div class="row justify-content-center">
+                            <div class="col align-self-start">CPF</div>
+                            <div class="col align-self-center">NOME</div>
+                            <div class="col align-self-center">PROTOCOLO</div>
+                            <div class="col align-self-center">SITUAÇÃO</div>
+                            <div class="col align-self-end">AÇÕES</div>
+                        </div>
+                        <div class="row justify-content-center">
                             <div class="col align-self-start">
-                                CPF
+                                <div class="dados_estilo"><label>{{ dossie.cabecalho.parametro }}</label></div>
                             </div>
                             <div class="col align-self-center">
-                                NOME
+                                <div class="dados_estilo"><label>{{ dossie.dossieMedico.laudos.listaLaudoSABITO[0].requerimentoSABITO.requerenteSABITO.nmRequerente }}</label></div>
                             </div>
                             <div class="col align-self-center">
-                                PROTOCOLO
+                                <div class="dados_estilo"><label>{{ dossie.cabecalho.protocolo }}</label></div>
                             </div>
                             <div class="col align-self-center">
-                                SITUAÇÃO
+                                <tr>Em processamento</tr>
+                                <tr>Dossie disponível</tr>
                             </div>
                             <div class="col align-self-end">
-                                AÇÕES
+                                <tr>Cancelar pedido</tr>
+                                <tr>Ver Dossie</tr>
                             </div>
                         </div>
                         <div class="row justify-content-center">
@@ -94,7 +103,9 @@
                             </div>
                             <div class="col align-self-end">
                                 <tr>Cancelar pedido</tr>
-                                <tr><a [routerLink]="['tela-viewlaudo','']">Ver Dossie</a></tr>
+                                <!-- <a [routerLink]="['tela-viewlaudo.component','id']">Ver Dossie</a> -->
+                                <tr><a [routerLink]="['tela-viewlaudo', '']">Ver Dossie</a></tr>
+
                             </div>
                         </div>
                     </div>
@@ -103,3 +114,5 @@
         </mat-card-content>
     </mat-card>
 </div>
+
+<app-tela-viewlaudo></app-tela-viewlaudo>
