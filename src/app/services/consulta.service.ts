@@ -30,6 +30,8 @@ export class ConsultaService {
     }
 
     public findByCpf(filtro: string): Observable<ObterDossie> {
+
+
         /*
         1 - Cpf para consulta, incluido no campo cpf do objeto
         2 - Montagem do corpo da resquisição

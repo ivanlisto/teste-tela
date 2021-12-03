@@ -1,0 +1,42 @@
+Utilizando os recuros ngif, ngfor e css para controlar o frontEnd em angular
+par e impar de cada cor dentro de uma lista
+
+componente css
+
+.impar {
+    color: rgb(236, 236, 236);
+    background-color: rgb(116, 172, 236);
+    width: 40px;
+    height: 40px;
+  }
+  .par {
+    color: rgb(250, 250, 250);
+   
+    background-color: rgb(163, 87, 97);
+    width: 40px;
+    height: 40px;
+  }
+
+
+componente ts 
+export class DiretivangforComponent implements OnInit {
+  vetor : number[] =[1, 2, 3,  4, 5, 6 ]; // declarando vetor
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+}
+
+componente html
+<h1>NG-FOR</h1>
+<p>diretivangfor</p>
+<div *ngFor= "let v of vetor">
+    <div class="impar" *ngIf="v % 2 != 0">{{ v }}</div>
+    <div class="par" *ngIf="v % 2 == 0">{{ v }}</div>
+</div>
+<!--//let possibilita criar variaveis no form
+podemos fazer if com o conteudo da variavel criada no form
+-->
+
+
+

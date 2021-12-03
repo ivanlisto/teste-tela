@@ -1,21 +1,5 @@
 <div class="container-fluid">
     <!-- Colunas de forma responsível (automaticamente) -->
-    <!--div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="card">
-          <p class="card-header">Consulta Requerente</p>
-          <div class="card-body">
-            <div class="card-text">
-              <div class="requerente">
-                 Digite o CPF: <input class="input_style" type="text" name="" id="">&nbsp;<button class="button_style" type="submit">OK</button>
-              </div>
-            </div>
-          </div>
-        </div>
-       </div>
-  </!--div-->
-
-    <!-- Colunas de forma responsível (automaticamente) -->
     <div class="row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
             <mat-card class="card">
@@ -28,8 +12,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </mat-card-content>
             </mat-card>
         </div>
@@ -44,7 +26,11 @@
                                 <div class="dados_estilo"><b>CPF:&nbsp;</b><label>{{ dossie.cabecalho.parametro }}</label></div>
                             </div>
                             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                <div class="dados_estilo"><b>Nome:&nbsp;</b><label>{{ dossie.dossieMedico.laudos.listaLaudoSABITO[0].requerimentoSABITO.requerenteSABITO.nmRequerente }}</label></div>
+                                <div class="dados_estilo"><b>Nome:&nbsp;</b>
+                                    <label>
+                                    <a href="https://gateway.stg.cloud.pje.jus.br/previdenciario-api/api/v1/dossiemedico/2.0.0/solicitarDossie/cpf"></a>
+                                  </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -53,7 +39,7 @@
         </div>
     </div>
 </div>
-
+<!--Tabela com a lista de solicitações-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngIf="dossie.cabecalho!=null">
     <mat-card class="card">
         <mat-card-subtitle align='center' class="card-header"><b>Dossie Médico Solicitado</b></mat-card-subtitle>
@@ -103,9 +89,7 @@
                             </div>
                             <div class="col align-self-end">
                                 <tr>Cancelar pedido</tr>
-                                <!-- <a [routerLink]="['tela-viewlaudo.component','id']">Ver Dossie</a> -->
-                                <tr><a [routerLink]="['tela-viewlaudo', '']">Ver Dossie</a></tr>
-
+                                <tr>Dossie disponível</tr>
                             </div>
                         </div>
                     </div>
@@ -114,5 +98,7 @@
         </mat-card-content>
     </mat-card>
 </div>
+
+<!-- <a [routerLink]="['tela-viewlaudo.component','id']">Ver Dossie</a> -->
 
 <app-tela-viewlaudo></app-tela-viewlaudo>
